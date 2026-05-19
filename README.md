@@ -69,7 +69,7 @@ This Table give a short Overview on the optimization Constraints
 | $$ b_t^d = \sum_{k=t_0}^{t-1} [o_k^d - q_k^d] $$ | $$b_t^d$$ equal the amount of hydrogen currently available in storage component.The produced amount of hydrogen cannot exceed the purchased and labeled grey hydrogen. The sum controls for cumulative values over time horizon T | endogenous variable Input |
 | $$q_t^g <= b_t^g ; t \in T$$ | For each time step t only the amount currently stored in the tank can be sold | How do we model anticipation of higher prices? Is it thoughful to consider strategic storing? |
 | q_t^d <= b_t^d ; t \in T | For each time step t only the amount currently stored in the tank can be sold | .. |
-| $$b_{max} >= b_t^d + b_t^g ; t \in T$$ | Full Storage Capacity | Factor that needs to be equal in each modeled scenario |
+| $$b_{max} <= b_t^d + b_t^g ; t \in T$$ | Full Storage Capacity | Factor that needs to be equal in each modeled scenario |
 
 
 
