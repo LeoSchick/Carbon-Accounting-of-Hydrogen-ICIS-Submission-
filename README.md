@@ -21,9 +21,60 @@ https://github.com/macroenergy/Dolphyn.jl/tree/main/src/GenX/src/load_inputs
 
 navigate to C:\HydroNET\HydroNet
 then type: .\Scripts\Activate.ps1   
+## Model Description 
+
+This Table give a short Overview about Key Variables 
+
+|Variable | Description | Dependent |
+| :--- | :---: | ---: |
+| $$p_t^g$$ | External Market Price for Green Hydrogen | exogenous Input |
+| $$q_t^g$$ | Quantity of green Hyrodgen sold on market | endogenous variable Input |
+| $$p_t^d$$ | External Market Price for Grey (dirty) Hydrogen | exogenous Input |
+| $$q_t^d$$ | Quantity of Grey (dirty) Hyrodgen sold on market | endogenous variable Input |
+| $$e_t$$ | Energy (Electricity) Price at Time t | exogenous variable Input |
+| $$o_t$$ | Energy (Electricity) Quantity at Time t | exogenous variable Input |
+| $$b_t^g$$ | Quantity in Tank at Time t | exogenous variable Input |
+
+**Optimizing Function**
+
+$$
+\max_{q} \sum_{t=1}^T p_t^g q_t^g + p_t^d q_t^d - e_to_t
+$$
+
+s.t.
+$$
+ b_t^g = \sum_{k=t_0}^{t-1} [o_k^g - q_k^g]
+$$
+$$
+ b_t^d = \sum_{k=t_0}^{t-1} [o_k^d - q_k^d]
+$$
+
+$$
+q_t^g <= b_t^g ; valid for all t in T
+$$
+
+$$
+q_t^d <= b_t^d ; valid for all t in T
+$$
+
+$$
+b_{max} >= b_t^d + b_t^g ; valid for all t in T
+$$
+
+This Table give a short Overview on the optimization Constraints
+
+|Variable | Description | Dependent |
+| :--- | :---: | ---: |
+| $$p_t^g$$ | External Market Price for Green Hydrogen | exogenous Input |
+| $$q_t^g$$ | Quantity of green Hyrodgen sold on market | endogenous variable Input |
+| $$p_t^d$$ | External Market Price for Grey (dirty) Hydrogen | exogenous Input |
+| $$q_t^d$$ | Quantity of Grey (dirty) Hyrodgen sold on market | endogenous variable Input |
+| $$e_t$$ | Energy (Electricity) Price at Time t | exogenous variable Input |
+| $$o_t$$ | Energy (Electricity) Price at Time t | exogenous variable Input |
 
 
-## Model Optimization 
+
+## Model Optimization First Draft
 
 Cost Function: 
 Fixed Costs: $C$
@@ -48,3 +99,5 @@ Target Function
 $$
 max \sum_{t=1}^n r_t - c_t - C
 $$
+
+
