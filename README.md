@@ -50,27 +50,27 @@ $$
 $$
 
 $$
-q_t^g <= b_t^g ; valid for all t in T
+q_t^g <= b_t^g ; t \in T
 $$
 
 $$
-q_t^d <= b_t^d ; valid for all t in T
+q_t^d <= b_t^d ; t \in T
 $$
 
 $$
-b_{max} >= b_t^d + b_t^g ; valid for all t in T
+b_{max} >= b_t^d + b_t^g ; t \in T
 $$
 
 This Table give a short Overview on the optimization Constraints
 
-|Variable | Description | Dependent |
-| :--- | :---: | ---: |
-| $$p_t^g$$ | External Market Price for Green Hydrogen | exogenous Input |
-| $$q_t^g$$ | Quantity of green Hyrodgen sold on market | endogenous variable Input |
-| $$p_t^d$$ | External Market Price for Grey (dirty) Hydrogen | exogenous Input |
-| $$q_t^d$$ | Quantity of Grey (dirty) Hyrodgen sold on market | endogenous variable Input |
-| $$e_t$$ | Energy (Electricity) Price at Time t | exogenous variable Input |
-| $$o_t$$ | Energy (Electricity) Price at Time t | exogenous variable Input |
+|Variable | Description | Additional thought |
+| :---: | :---: | :---: |
+|  $$ b_t^g = \sum_{k=t_0}^{t-1} [o_k^g - q_k^g] $$| The produced amount of hydrogen cannot exceed the purchased and labeled green hydrogen. The sum controls for cumulative values over time horizon T | Here we need to add a constant efficiency factor describing how incoming energy translates into amounts of hydrogen. We can also consider water as an additional input good  |
+| $$ b_t^d = \sum_{k=t_0}^{t-1} [o_k^d - q_k^d] $$ | $$b_t^d$$ equal the amount of hydrogen currently available in storage component.The produced amount of hydrogen cannot exceed the purchased and labeled grey hydrogen. The sum controls for cumulative values over time horizon T | endogenous variable Input |
+| $$q_t^g <= b_t^g ; t \in T$$ | For each time step t only the amount currently stored in the tank can be sold | How do we model anticipation of higher prices? Is it thoughful to consider strategic storing? |
+| q_t^d <= b_t^d ; t \in T | For each time step t only the amount currently stored in the tank can be sold | .. |
+| $$b_{max} >= b_t^d + b_t^g ; t \in T$$ | Full Storage Capacity | Factor that needs to be equal in each modeled scenario |
+
 
 
 
